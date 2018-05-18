@@ -33,6 +33,8 @@ uint16_t boardResults[N_OF_BOARD];
 uint16_t thermVolts[N_OF_THERM];
 uint16_t boardVolts[N_OF_BOARD];
 
+uint8_t allVolts[(N_OF_THERM + N_OF_BOARD) * 2];
+
 uint8_t test[46];
 
 void updateVolts();
@@ -53,15 +55,36 @@ int main(void)
     
     for(;;)
     {
+        /*
+        // DUmb loop to just give some data back
+        for(;;){
+            OE_Write(1);
+            for (int i = 0; i < 46; i++) {
+                    SPIS_WriteTxData(test[i]); // Put data in the buffer
+            }
+        }
+        */
+        
         updateVolts();
         if (CURRENT_STATE == ENABLE_TRANSMIT) {
             updateVolts();
             SPIS_ClearTxBuffer();          // Clear buffer
             OE_Write(1);                   // Enable output
             
+            /*
             for (int i = 0; i < 46; i++) {
-                SPIS_WriteTxData(test[i]); // Put data in the buffer
+                SPIS_WriteTxData(test[i]);   
             }
+            */
+            
+            for (int i = 0; i < (N_OF_THERM * 2); i++) {
+                SPIS_WriteTxData(allVolts[i]); // Put data in the buffer
+            }
+            
+            for (int i = 0; i < (N_OF_BOARD * 2); i++) {
+                SPIS_WriteTxData(allVolts[i + N_OF_THERM]); // Put data in the buffer
+            }
+            
             SPIS_ClearRxBuffer(); 
             CURRENT_STATE = TRANSMITTING;
             CyDelay(100);                  // Give time for the data to be sent before disabling output
@@ -126,6 +149,18 @@ void updateVolts() {
         
     for (int i = 0; i < N_OF_BOARD; i++) {
         boardVolts[i] = ADC_CountsTo_mVolts(boardResults[i]);
+    }
+    
+    uint16_t test = 0x9C4;
+    
+    for (int i = 0; i < N_OF_THERM * 2; i += 2) {
+        allVolts[i] = (thermVolts[i] >> 8); // Put data in the buffer
+        allVolts[i + 1] = ((thermVolts[i] << 4) >> 4);
+    }
+                
+    for (int i = 0; i < N_OF_BOARD * 2; i += 2) {
+        allVolts[i + N_OF_THERM] = (boardVolts[i] >> 8); // Put data in the buffer
+        allVolts[i + N_OF_THERM + 1] = ((boardVolts[i] << 4) >> 4);
     }
 }
 
