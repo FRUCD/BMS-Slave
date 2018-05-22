@@ -1,22 +1,10 @@
---------------- Build Started: 05/17/2018 19:27:17 Project: BMS-Slave, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+--------------- Build Started: 05/22/2018 14:42:58 Project: BMS-Slave, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
 The code generation step is up to date.
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/main.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c main.c -o .\CortexM3\ARM_GCC_541\Debug\main.o
 main.c: In function 'updateVolts':
 main.c:154:14: warning: unused variable 'test' [-Wunused-variable]
      uint16_t test = 0x9C4;
               ^
-main.c:162:47: warning: iteration 5u invokes undefined behavior [-Waggressive-loop-optimizations]
-         allVolts[i + N_OF_THERM] = (boardVolts[i] >> 8); // Put data in the buffer
-                                               ^
-main.c:161:5: note: containing loop
-     for (int i = 0; i < N_OF_BOARD * 2; i += 2) {
-     ^
-main.c:157:34: warning: iteration 7u invokes undefined behavior [-Waggressive-loop-optimizations]
-         allVolts[i] = (thermVolts[i] >> 8); // Put data in the buffer
-                                  ^
-main.c:156:5: note: containing loop
-     for (int i = 0; i < N_OF_THERM * 2; i += 2) {
-     ^
 arm-none-eabi-ar.exe -rs .\CortexM3\ARM_GCC_541\Debug\BMS-Slave.a .\CortexM3\ARM_GCC_541\Debug\MOSI.o .\CortexM3\ARM_GCC_541\Debug\SCLK.o .\CortexM3\ARM_GCC_541\Debug\MISO.o .\CortexM3\ARM_GCC_541\Debug\SPIS.o .\CortexM3\ARM_GCC_541\Debug\SPIS_PM.o .\CortexM3\ARM_GCC_541\Debug\SPIS_INT.o .\CortexM3\ARM_GCC_541\Debug\SPIS_BOOT.o .\CortexM3\ARM_GCC_541\Debug\SS.o .\CortexM3\ARM_GCC_541\Debug\SPIS_IntClock.o .\CortexM3\ARM_GCC_541\Debug\CyDmac.o .\CortexM3\ARM_GCC_541\Debug\CyFlash.o .\CortexM3\ARM_GCC_541\Debug\CyLib.o .\CortexM3\ARM_GCC_541\Debug\cyPm.o .\CortexM3\ARM_GCC_541\Debug\CySpc.o .\CortexM3\ARM_GCC_541\Debug\cyutils.o .\CortexM3\ARM_GCC_541\Debug\cy_em_eeprom.o .\CortexM3\ARM_GCC_541\Debug\ADC.o .\CortexM3\ARM_GCC_541\Debug\ADC_PM.o .\CortexM3\ARM_GCC_541\Debug\ADC_INT.o .\CortexM3\ARM_GCC_541\Debug\Therm1.o .\CortexM3\ARM_GCC_541\Debug\Therm2.o .\CortexM3\ARM_GCC_541\Debug\Therm3.o .\CortexM3\ARM_GCC_541\Debug\Therm4.o .\CortexM3\ARM_GCC_541\Debug\Therm5.o .\CortexM3\ARM_GCC_541\Debug\Therm6.o .\CortexM3\ARM_GCC_541\Debug\Therm7.o .\CortexM3\ARM_GCC_541\Debug\Therm8.o .\CortexM3\ARM_GCC_541\Debug\Therm9.o .\CortexM3\ARM_GCC_541\Debug\Therm10.o .\CortexM3\ARM_GCC_541\Debug\Therm11.o .\CortexM3\ARM_GCC_541\Debug\Therm12.o .\CortexM3\ARM_GCC_541\Debug\Therm13.o .\CortexM3\ARM_GCC_541\Debug\Therm14.o .\CortexM3\ARM_GCC_541\Debug\BoardTherm1.o .\CortexM3\ARM_GCC_541\Debug\BoardTherm2.o .\CortexM3\ARM_GCC_541\Debug\BoardTherm3.o .\CortexM3\ARM_GCC_541\Debug\BoardTherm4.o .\CortexM3\ARM_GCC_541\Debug\BoardTherm5.o .\CortexM3\ARM_GCC_541\Debug\BoardTherm6.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR_INT.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR_PM.o .\CortexM3\ARM_GCC_541\Debug\ADC_IntClock.o .\CortexM3\ARM_GCC_541\Debug\ADC_TempBuf_dma.o .\CortexM3\ARM_GCC_541\Debug\ADC_FinalBuf_dma.o .\CortexM3\ARM_GCC_541\Debug\ADC_IRQ.o .\CortexM3\ARM_GCC_541\Debug\BoardTherm7.o .\CortexM3\ARM_GCC_541\Debug\BoardTherm8.o .\CortexM3\ARM_GCC_541\Debug\BoardTherm9.o .\CortexM3\ARM_GCC_541\Debug\OE.o .\CortexM3\ARM_GCC_541\Debug\OE_PM.o .\CortexM3\ARM_GCC_541\Debug\Address1.o .\CortexM3\ARM_GCC_541\Debug\Address2.o .\CortexM3\ARM_GCC_541\Debug\Address3.o .\CortexM3\ARM_GCC_541\Debug\Address4.o .\CortexM3\ARM_GCC_541\Debug\CyBootAsmGnu.o
 arm-none-eabi-ar.exe: creating .\CortexM3\ARM_GCC_541\Debug\BMS-Slave.a
 arm-none-eabi-gcc.exe -Wl,--start-group -o "C:\Users\Brandon Collins\Desktop\Sky\BMS-Slave\BMS-Slave.cydsn\CortexM3\ARM_GCC_541\Debug\BMS-Slave.elf" .\CortexM3\ARM_GCC_541\Debug\main.o .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o .\CortexM3\ARM_GCC_541\Debug\cymetadata.o .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o .\CortexM3\ARM_GCC_541\Debug\BMS-Slave.a "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_541\Debug\CyComponentLibrary.a" -mcpu=cortex-m3 -mthumb -L Generated_Source\PSoC5 -Wl,-Map,.\CortexM3\ARM_GCC_541\Debug/BMS-Slave.map -T Generated_Source\PSoC5\cm3gcc.ld -specs=nano.specs -Wl,--gc-sections -g -ffunction-sections -Og -ffat-lto-objects -Wl,--end-group
@@ -25,6 +13,6 @@ No ELF section .cychecksum found, creating one
 Application checksum calculated and stored in ELF section .cychecksum
 Checksum calculated and stored in ELF section .cymeta
 cyelftool.exe -S "C:\Users\Brandon Collins\Desktop\Sky\BMS-Slave\BMS-Slave.cydsn\CortexM3\ARM_GCC_541\Debug\BMS-Slave.elf"
-Flash used: 4862 of 131072 bytes (3.7%).
+Flash used: 4870 of 131072 bytes (3.7%).
 SRAM used: 3377 of 32768 bytes (10.3%). Stack: 2048 bytes. Heap: 128 bytes.
---------------- Build Succeeded: 05/17/2018 19:27:19 ---------------
+--------------- Build Succeeded: 05/22/2018 14:43:04 ---------------

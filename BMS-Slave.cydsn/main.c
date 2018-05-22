@@ -87,7 +87,7 @@ int main(void)
             
             SPIS_ClearRxBuffer(); 
             CURRENT_STATE = TRANSMITTING;
-            CyDelay(100);                  // Give time for the data to be sent before disabling output
+            CyDelay(10);                  // Give time for the data to be sent before disabling output
             OE_Write(0);                   // Disable output
             CURRENT_STATE = IDLE;
         }
@@ -153,14 +153,17 @@ void updateVolts() {
     
     uint16_t test = 0x9C4;
     
-    for (int i = 0; i < N_OF_THERM * 2; i += 2) {
-        allVolts[i] = (thermVolts[i] >> 8); // Put data in the buffer
-        allVolts[i + 1] = ((thermVolts[i] << 4) >> 4);
+    int voltIndex = 0;
+    int i = 0;
+    for (i = 0; i < (N_OF_THERM * 2); i += 2, voltIndex++) {
+        allVolts[i] = (thermVolts[voltIndex] >> 8); // Put data in the buffer
+        allVolts[i + 1] = ((thermVolts[voltIndex] << 4) >> 4);
     }
-                
-    for (int i = 0; i < N_OF_BOARD * 2; i += 2) {
-        allVolts[i + N_OF_THERM] = (boardVolts[i] >> 8); // Put data in the buffer
-        allVolts[i + N_OF_THERM + 1] = ((boardVolts[i] << 4) >> 4);
+
+    voltIndex = 0;
+    for (i = 0; i < (N_OF_BOARD * 2); i += 2, voltIndex++) {
+        allVolts[i + (N_OF_THERM * 2)] = (boardVolts[voltIndex] >> 8); // Put data in the buffer
+        allVolts[i + (N_OF_THERM * 2) + 1] = ((boardVolts[voltIndex] << 4) >> 4);
     }
 }
 
