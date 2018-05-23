@@ -82,7 +82,7 @@ int main(void)
             }
             
             for (int i = 0; i < (N_OF_BOARD * 2); i++) {
-                SPIS_WriteTxData(allVolts[i + N_OF_THERM]); // Put data in the buffer
+                SPIS_WriteTxData(allVolts[i + (N_OF_THERM * 2)]); // Put data in the buffer
             }
             
             SPIS_ClearRxBuffer(); 
